@@ -189,6 +189,23 @@ def main():
             "-DBUILD_OPENEXR=ON",
         ]
         + (
+            # Here goes the FFMPEG related part
+           [
+           "-D WITH_FFMPEG=ON",
+           "-D WITH_OPENCL=ON",
+           ]
+          )
+        + (
+           # Here goes the CUDA related part
+           [
+           "-D WITH_CUDA=ON",
+           "-D WITH_CUDNN=ON",
+           "-D BUILD_opencv_cudacodec=ON",
+           "-D WITH_NVCUVID=OFF",
+           "-D WITH_NVCUVENC=OFF",
+           ]
+          )
+        + (
             # CMake flags for windows/arm64 build
             ["-DCMAKE_GENERATOR_PLATFORM=ARM64",
              # Emulated cmake requires following flags to correctly detect

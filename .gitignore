@@ -69,3 +69,6 @@ target/
 /cv_version.py
 /cv2/version.py
 _skbuild/
+
+# venv
+venv
