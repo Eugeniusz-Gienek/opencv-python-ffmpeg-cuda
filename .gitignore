@@ -72,3 +72,8 @@ _skbuild/
 
 # venv
 venv
+
+*.whl
+
+opencv/*
+opencv_contrib/*
