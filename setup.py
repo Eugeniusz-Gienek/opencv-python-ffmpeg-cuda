@@ -1,5 +1,6 @@
 import io
 import os
+import shutil
 import os.path
 import sys
 import runpy
@@ -191,18 +192,18 @@ def main():
         + (
             # Here goes the FFMPEG related part
            [
-           "-D WITH_FFMPEG=ON",
-           "-D WITH_OPENCL=ON",
+           "-DWITH_FFMPEG=ON",
+           "-DWITH_OPENCL=ON",
            ]
           )
         + (
            # Here goes the CUDA related part
            [
-           "-D WITH_CUDA=ON",
-           "-D WITH_CUDNN=ON",
-           "-D BUILD_opencv_cudacodec=ON",
-           "-D WITH_NVCUVID=OFF",
-           "-D WITH_NVCUVENC=OFF",
+           "-DWITH_CUDA=ON",
+           "-DWITH_CUDNN=ON",
+           "-DBUILD_opencv_cudacodec=ON",
+           "-DWITH_NVCUVID=OFF",
+           "-DWITH_NVCUVENC=OFF",
            ]
           )
         + (
@@ -270,8 +271,13 @@ def main():
 
         if sys.platform.startswith("linux"):
             cmake_args.append("-DWITH_V4L=ON")
-            cmake_args.append("-DWITH_LAPACK=ON")
+            cmake_args.append("-DWITH_LAPACK=OFF")
+            cmake_args.append("-DBLASS=OFF")
             cmake_args.append("-DENABLE_PRECOMPILED_HEADERS=OFF")
+
+    if build_contrib:
+        shutil.copyfile('opencv_fixes/CMakeLists.txt', './CMakeLists.txt')
+        shutil.copytree('opencv_fixes/opencv/3rdparty/ippicv', './opencv/3rdparty/ippicv', dirs_exist_ok=True)
 
     # works via side effect
     RearrangeCMakeOutput(
@@ -281,7 +287,7 @@ def main():
     setup(
         name=package_name,
         version=package_version,
-        url="https://github.com/opencv/opencv-python",
+        url="https://github.com/Eugeniusz-Gienek/opencv-python-ffmpeg-cuda",
         license="Apache 2.0",
         description="Wrapper package for OpenCV python bindings.",
         long_description=long_description,
@@ -307,13 +313,13 @@ def main():
             "Programming Language :: Python",
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3 :: Only",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
-            "Programming Language :: Python :: 3.8",
-            "Programming Language :: Python :: 3.9",
-            "Programming Language :: Python :: 3.10",
-            "Programming Language :: Python :: 3.11",
-            "Programming Language :: Python :: 3.12",
+#            "Programming Language :: Python :: 3.6",
+#            "Programming Language :: Python :: 3.7",
+#            "Programming Language :: Python :: 3.8",
+#            "Programming Language :: Python :: 3.9",
+#            "Programming Language :: Python :: 3.10",
+#            "Programming Language :: Python :: 3.11",
+#            "Programming Language :: Python :: 3.12",
             "Programming Language :: Python :: 3.13",
             "Programming Language :: C++",
             "Programming Language :: Python :: Implementation :: CPython",
