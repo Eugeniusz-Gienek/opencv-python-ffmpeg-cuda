@@ -1,3 +1,14 @@
+## This version of OpenCV is using FFMPEG and CUDA.
+
+In order to build this, use this command:
+
+`CUDA_PATH=/opt/cuda ENABLE_CONTRIB=1 pip install .`
+
+Optimized for Python 3.13 and NVidia Toolkit 13.x
+
+**Below is original README**
+-----
+
 [![Downloads](https://static.pepy.tech/badge/opencv-python)](http://pepy.tech/project/opencv-python)
 
 ### Keep OpenCV Free
