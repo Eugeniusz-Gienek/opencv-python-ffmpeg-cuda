@@ -3,6 +3,8 @@
 In order to build this, use this command:
 
 `CUDA_PATH=/opt/cuda ENABLE_CONTRIB=1 pip install .`
+or, if building wheel:
+`CUDA_PATH=/opt/cuda ENABLE_CONTRIB=1 pip wheel . --verbose`
 
 Optimized for Python 3.13 and NVidia Toolkit 13.x
 
